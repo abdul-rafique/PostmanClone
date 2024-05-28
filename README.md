@@ -20,5 +20,4 @@ Postman Clone provides a user-friendly interface for making GET requests to APIs
 * Handling API authentication
 * Adding Dependecy Injection
 * Adding Logging
-* Create a web-based user interface for the application
-* 
+* Create a web-based user interface for the application 
