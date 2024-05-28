@@ -37,6 +37,18 @@ namespace PostmanClone.Library
                     response = await _httpClient.PostAsync(url, content);
                     break;
 
+                case HttpAction.PUT:
+                    response = await _httpClient.PutAsync(url, content);
+                    break;
+
+                case HttpAction.PATCH:
+                    response = await _httpClient.PatchAsync(url, content);
+                    break;
+
+                case HttpAction.DELETE:
+                    response = await _httpClient.DeleteAsync(url);
+                    break;
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(action), action, null);
             }

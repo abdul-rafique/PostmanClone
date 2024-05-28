@@ -115,7 +115,7 @@ partial class Dashboard
         // httpVerbSelectionBox
         // 
         httpVerbSelectionBox.FormattingEnabled = true;
-        httpVerbSelectionBox.Items.AddRange(new object[] { "GET", "POST" });
+        httpVerbSelectionBox.Items.AddRange(new object[] { "GET", "POST", "PUT", "PATCH", "DELETE" });
         httpVerbSelectionBox.Location = new Point(91, 93);
         httpVerbSelectionBox.Name = "httpVerbSelectionBox";
         httpVerbSelectionBox.Size = new Size(80, 28);
