@@ -29,14 +29,22 @@ partial class Dashboard
     private void InitializeComponent()
     {
         FormTitle = new Label();
-        apiTextBoxLabel = new Label();
         apiTextBox = new TextBox();
         callApiBtn = new Button();
         statusStrip = new StatusStrip();
         systemStatus = new ToolStripStatusLabel();
-        resultTextBox = new TextBox();
         resultTextBoxLabel = new Label();
+        apiTextBoxLabel = new Label();
+        httpVerbSelectionBox = new ComboBox();
+        callDataTabControl = new TabControl();
+        bodyTab = new TabPage();
+        bodyTextBox = new TextBox();
+        resultsTab = new TabPage();
+        resultTextBox = new TextBox();
         statusStrip.SuspendLayout();
+        callDataTabControl.SuspendLayout();
+        bodyTab.SuspendLayout();
+        resultsTab.SuspendLayout();
         SuspendLayout();
         // 
         // FormTitle
@@ -49,23 +57,13 @@ partial class Dashboard
         FormTitle.TabIndex = 0;
         FormTitle.Text = "Postman Clone";
         // 
-        // apiTextBoxLabel
-        // 
-        apiTextBoxLabel.AutoSize = true;
-        apiTextBoxLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        apiTextBoxLabel.Location = new Point(40, 90);
-        apiTextBoxLabel.Name = "apiTextBoxLabel";
-        apiTextBoxLabel.Size = new Size(45, 28);
-        apiTextBoxLabel.TabIndex = 1;
-        apiTextBoxLabel.Text = "API:";
-        // 
         // apiTextBox
         // 
         apiTextBox.BackColor = Color.White;
         apiTextBox.BorderStyle = BorderStyle.FixedSingle;
-        apiTextBox.Location = new Point(91, 94);
+        apiTextBox.Location = new Point(177, 94);
         apiTextBox.Name = "apiTextBox";
-        apiTextBox.Size = new Size(590, 27);
+        apiTextBox.Size = new Size(504, 27);
         apiTextBox.TabIndex = 2;
         // 
         // callApiBtn
@@ -95,27 +93,85 @@ partial class Dashboard
         systemStatus.Size = new Size(65, 28);
         systemStatus.Text = "Ready";
         // 
-        // resultTextBox
-        // 
-        resultTextBox.BackColor = Color.White;
-        resultTextBox.BorderStyle = BorderStyle.FixedSingle;
-        resultTextBox.Location = new Point(40, 177);
-        resultTextBox.Multiline = true;
-        resultTextBox.Name = "resultTextBox";
-        resultTextBox.ReadOnly = true;
-        resultTextBox.ScrollBars = ScrollBars.Both;
-        resultTextBox.Size = new Size(708, 336);
-        resultTextBox.TabIndex = 6;
-        // 
         // resultTextBoxLabel
         // 
         resultTextBoxLabel.AutoSize = true;
         resultTextBoxLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         resultTextBoxLabel.Location = new Point(40, 146);
         resultTextBoxLabel.Name = "resultTextBoxLabel";
-        resultTextBoxLabel.Size = new Size(76, 28);
+        resultTextBoxLabel.Size = new Size(0, 28);
         resultTextBoxLabel.TabIndex = 7;
-        resultTextBoxLabel.Text = "Results:";
+        // 
+        // apiTextBoxLabel
+        // 
+        apiTextBoxLabel.AutoSize = true;
+        apiTextBoxLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        apiTextBoxLabel.Location = new Point(40, 90);
+        apiTextBoxLabel.Name = "apiTextBoxLabel";
+        apiTextBoxLabel.Size = new Size(45, 28);
+        apiTextBoxLabel.TabIndex = 1;
+        apiTextBoxLabel.Text = "API:";
+        // 
+        // httpVerbSelectionBox
+        // 
+        httpVerbSelectionBox.FormattingEnabled = true;
+        httpVerbSelectionBox.Items.AddRange(new object[] { "GET", "POST" });
+        httpVerbSelectionBox.Location = new Point(91, 93);
+        httpVerbSelectionBox.Name = "httpVerbSelectionBox";
+        httpVerbSelectionBox.Size = new Size(80, 28);
+        httpVerbSelectionBox.TabIndex = 8;
+        // 
+        // callDataTabControl
+        // 
+        callDataTabControl.Controls.Add(bodyTab);
+        callDataTabControl.Controls.Add(resultsTab);
+        callDataTabControl.Location = new Point(46, 146);
+        callDataTabControl.Name = "callDataTabControl";
+        callDataTabControl.SelectedIndex = 0;
+        callDataTabControl.Size = new Size(702, 356);
+        callDataTabControl.TabIndex = 9;
+        // 
+        // bodyTab
+        // 
+        bodyTab.Controls.Add(bodyTextBox);
+        bodyTab.Location = new Point(4, 29);
+        bodyTab.Name = "bodyTab";
+        bodyTab.Padding = new Padding(3);
+        bodyTab.Size = new Size(694, 323);
+        bodyTab.TabIndex = 0;
+        bodyTab.Text = "Body";
+        bodyTab.UseVisualStyleBackColor = true;
+        // 
+        // bodyTextBox
+        // 
+        bodyTextBox.Dock = DockStyle.Fill;
+        bodyTextBox.Location = new Point(3, 3);
+        bodyTextBox.Multiline = true;
+        bodyTextBox.Name = "bodyTextBox";
+        bodyTextBox.ScrollBars = ScrollBars.Vertical;
+        bodyTextBox.Size = new Size(688, 317);
+        bodyTextBox.TabIndex = 0;
+        // 
+        // resultsTab
+        // 
+        resultsTab.Controls.Add(resultTextBox);
+        resultsTab.Location = new Point(4, 29);
+        resultsTab.Name = "resultsTab";
+        resultsTab.Padding = new Padding(3);
+        resultsTab.Size = new Size(694, 323);
+        resultsTab.TabIndex = 1;
+        resultsTab.Text = "Results";
+        resultsTab.UseVisualStyleBackColor = true;
+        // 
+        // resultTextBox
+        // 
+        resultTextBox.Dock = DockStyle.Fill;
+        resultTextBox.Location = new Point(3, 3);
+        resultTextBox.Multiline = true;
+        resultTextBox.Name = "resultTextBox";
+        resultTextBox.ScrollBars = ScrollBars.Vertical;
+        resultTextBox.Size = new Size(688, 317);
+        resultTextBox.TabIndex = 0;
         // 
         // Dashboard
         // 
@@ -123,8 +179,9 @@ partial class Dashboard
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
         ClientSize = new Size(806, 567);
+        Controls.Add(callDataTabControl);
+        Controls.Add(httpVerbSelectionBox);
         Controls.Add(resultTextBoxLabel);
-        Controls.Add(resultTextBox);
         Controls.Add(statusStrip);
         Controls.Add(callApiBtn);
         Controls.Add(apiTextBox);
@@ -134,6 +191,11 @@ partial class Dashboard
         Text = "Dashboard";
         statusStrip.ResumeLayout(false);
         statusStrip.PerformLayout();
+        callDataTabControl.ResumeLayout(false);
+        bodyTab.ResumeLayout(false);
+        bodyTab.PerformLayout();
+        resultsTab.ResumeLayout(false);
+        resultsTab.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -141,11 +203,16 @@ partial class Dashboard
     #endregion
 
     private Label FormTitle;
-    private Label apiTextBoxLabel;
     private TextBox apiTextBox;
     private Button callApiBtn;
     private StatusStrip statusStrip;
-    private TextBox resultTextBox;
     private Label resultTextBoxLabel;
     private ToolStripStatusLabel systemStatus;
+    private Label apiTextBoxLabel;
+    private ComboBox httpVerbSelectionBox;
+    private TabControl callDataTabControl;
+    private TabPage bodyTab;
+    private TextBox bodyTextBox;
+    private TabPage resultsTab;
+    private TextBox resultTextBox;
 }
